@@ -5,7 +5,9 @@ PODS:
     - ExpoModulesCore
   - EXConstants (13.0.2):
     - ExpoModulesCore
-  - EXFileSystem (13.1.3):
+  - EXErrorRecovery (3.0.5):
+    - ExpoModulesCore
+  - EXFileSystem (13.1.4):
     - ExpoModulesCore
   - EXFont (10.0.5):
     - ExpoModulesCore
@@ -27,7 +29,17 @@ PODS:
     - React-Core (= 0.64.3)
     - React-jsi (= 0.64.3)
     - ReactCommon/turbomodule/core (= 0.64.3)
+  - glia-bridge (0.2.2):
+    - GliaWidgets
+    - React-Core
+  - glia-webrtc/bitcode (0.0.3)
+  - GliaWidgets (0.6.4):
+    - lottie-ios (= 3.2.3)
+    - PureLayout (~> 3.1)
+    - SalemoveSDK (= 0.32.2)
   - glog (0.3.5)
+  - lottie-ios (3.2.3)
+  - PureLayout (3.1.9)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -285,12 +297,25 @@ PODS:
     - React-cxxreact (= 0.64.3)
     - React-jsi (= 0.64.3)
     - React-perflogger (= 0.64.3)
+  - ReactiveSwift (6.5.0-xcf)
+  - SalemoveSDK (0.32.2):
+    - glia-webrtc/bitcode (= 0.0.3)
+    - ReactiveSwift (= 6.5.0-xcf)
+    - SocketIO (= 9.2.0-xcf)
+    - Starscream (= 3.1.1-xcf)
+    - SwiftPhoenixClient (= 1.2.1-xcf)
+    - TwilioVoice (= 6.2.0)
+  - SocketIO (9.2.0-xcf)
+  - Starscream (3.1.1-xcf)
+  - SwiftPhoenixClient (1.2.1-xcf)
+  - TwilioVoice (6.2.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
@@ -299,6 +324,8 @@ DEPENDENCIES:
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
+  - "glia-bridge (from `../node_modules/@trabian/glia-bridge`)"
+  - GliaWidgets
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -325,11 +352,23 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - SalemoveSDK
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
+    - glia-webrtc
+    - lottie-ios
+    - PureLayout
+    - TwilioVoice
+  https://github.com/salemove/glia-ios-podspecs.git:
+    - GliaWidgets
+    - ReactiveSwift
+    - SalemoveSDK
+    - SocketIO
+    - Starscream
+    - SwiftPhoenixClient
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -338,6 +377,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-application/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
+  EXErrorRecovery:
+    :path: "../node_modules/expo-error-recovery/ios"
   EXFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   EXFont:
@@ -354,6 +395,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
+  glia-bridge:
+    :path: "../node_modules/@trabian/glia-bridge"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   RCT-Folly:
@@ -410,15 +453,21 @@ SPEC CHECKSUMS:
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   EXApplication: 54fe5bd6268d697771645e8f1aef8b806a65247a
   EXConstants: 88bf79622fbd9b476c96d8ec57fe97ca44fe8e3c
-  EXFileSystem: c7187bfe9ed1eda11e7fda5953125695d791a24b
+  EXErrorRecovery: b0d7582714a2cc896e94a2308a356f94dbf14ef7
+  EXFileSystem: 08a3033ac372b6346becf07839e1ccef26fb1058
   EXFont: 2597c10ac85a69d348d44d7873eccf5a7576ef5e
   EXKeepAwake: bf48d7f740a5cd2befed6cf9a49911d385c6c47d
   Expo: 534e51e607aba8229293297da5585f4b26f50fa1
   ExpoModulesCore: 32c0ccb47f477d330ee93db72505380adf0de09a
   EXSplashScreen: 21669e598804ee810547dbb6692c8deb5dd8dbf3
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
-  FBReactNativeSpec: 41f0b6f68675beab047cf72884074ab2be9ef2d5
+  FBReactNativeSpec: edf31e867719e351c79535b9e5937212ebe1f0e1
+  glia-bridge: 8e31a691df04399cbf19d41c7db90505f7c28768
+  glia-webrtc: a5c7e59ae752281d19734b4f918db9da39e8009d
+  GliaWidgets: ae233a129eda5313474c3e67c8756afe0c968ee6
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  PureLayout: 5fb5e5429519627d60d079ccb1eaa7265ce7cf88
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: d34bf57e17cb6e3b2681f4809b13843c021feb6c
   RCTTypeSafety: 8dab4933124ed39bb0c1d88d74d61b1eb950f28f
@@ -442,8 +491,14 @@ SPEC CHECKSUMS:
   React-RCTVibration: c7f845861e79eae13dc1e8217a3cf47a3945b504
   React-runtimeexecutor: 493d9abb8b23c3f84e19ae221eeba92cadcb70dc
   ReactCommon: 8fea6422328e2fc093e25c9fac67adbcf0f04fb4
+  ReactiveSwift: 377d0a5621761a57c61829541b2ee0b9fdcd98f2
+  SalemoveSDK: dd14c39308aeff846055d6a0bb3dfd1972daa155
+  SocketIO: 07583ad0005148194dcdfb89feda88b2180e1391
+  Starscream: 54f05f3e7aa58f5ad1d5b4339ab55784bc74a35f
+  SwiftPhoenixClient: 77dadbfee8eecd7a41cc8cccdd883dd0df093ddb
+  TwilioVoice: 5e6fd6b5e99dfec03dcb57331f7e7c77ad79f1f0
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
-PODFILE CHECKSUM: 297fab528e28f5d1bda40459ed0f4e3c8c15cecf
+PODFILE CHECKSUM: 34f5e6f39723e96cab14a60c9d28b00a6a09a89e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2

@@ -25,10 +25,23 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+#import <SalemoveSDK/SalemoveSDK.h>
+
 @implementation AppDelegate
+@synthesize appDelegate;
+
+- (instancetype)init
+{
+  self = [super init];
+  if (self) {
+    self.appDelegate = [SalemoveAppDelegate new];
+  }
+  return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [appDelegate application:application didFinishLaunchingWithOptions:launchOptions];
 #if defined(FB_SONARKIT_ENABLED) && __has_include(<FlipperKit/FlipperClient.h>)
   InitializeFlipper(application);
 #endif
@@ -70,6 +83,10 @@ static void InitializeFlipper(UIApplication *application) {
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
   BOOL result = [RCTLinkingManager application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
   return [super application:application continueUserActivity:userActivity restorationHandler:restorationHandler] || result;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [appDelegate applicationDidBecomeActive:application];
 }
 
 @end
